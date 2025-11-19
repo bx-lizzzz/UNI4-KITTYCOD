@@ -21,6 +21,14 @@ function AuthForm() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Función para decidir la ruta según el mode
+  const getDashboardRoute = () =>
+    mode === "admin"
+      ? "/Dashboard"
+      : mode === "team"
+      ? "/MemberDashboard"
+      : "/DashboardCliente";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -30,7 +38,8 @@ function AuthForm() {
       // LOGIN CORRECTO CON SUPABASE
       await signInWithEmail(form.email, form.password);
 
-      navigate("/dashboard");
+      // Redirigir al dashboard correspondiente
+      navigate(getDashboardRoute());
     } catch (err) {
       console.error(err);
 
@@ -53,7 +62,9 @@ function AuthForm() {
     try {
       // LOGIN GOOGLE CORRECTO
       await signInWithGoogle();
-      navigate("/dashboard");
+
+      // Redirigir al dashboard correspondiente
+      navigate(getDashboardRoute());
     } catch (err) {
       console.error(err);
       setError("No se pudo iniciar sesión con Google.");
@@ -151,4 +162,3 @@ function AuthForm() {
 }
 
 export default AuthForm;
-

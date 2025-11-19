@@ -9,6 +9,9 @@ import Contact from "./pages/Contact";
 
 // ⭐ Agregar DashboardPage
 import DashboardPage from "./pages/DashboardPage";
+import DashboardCliente from "./components/DashboardCliente";
+import MemberDashboard from "./components/MemberDashboard";
+import Dashboard from "./components/Dashboard";
 
 import "./index.css";
 
@@ -75,6 +78,9 @@ function App() {
 
           {/* ⭐ Aquí agregamos tu Dashboard */}
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/MemberDashboard" element={<MemberDashboard />} />
+      <Route path="/DashboardCliente" element={<DashboardCliente />} />
         </Routes>
       </Layout>
     </Router>

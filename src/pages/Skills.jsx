@@ -1,4 +1,8 @@
+// src/pages/Skills.jsx
 import { useState, useEffect } from "react";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
+
 import {
   SiReact,
   SiNodedotjs,
@@ -13,57 +17,31 @@ const Skills = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    // Simula carga de datos
-    setTimeout(() => {
-      setSkills([
-        {
-          id: 1,
-          categoria: "Frontend",
-          habilidades: [
-            {
-              nombre: "React",
-              nivel: 85,
-              descripcion: "Creamos interfaces modernas y rápidas.",
-            },
-            {
-              nombre: "TailwindCSS",
-              nivel: 80,
-              descripcion: "Diseños elegantes con estilos sencillos.",
-            },
-          ],
-        },
-        {
-          id: 2,
-          categoria: "Backend",
-          habilidades: [
-            { nombre: "Node.js", nivel: 75, descripcion: "Aplicaciones rápidas y seguras." },
-            { nombre: "PostgreSQL", nivel: 70, descripcion: "Gestión confiable de bases de datos." },
-          ],
-        },
-        {
-          id: 3,
-          categoria: "Habilidades Blandas",
-          habilidades: [
-            {
-              nombre: "Trabajo en equipo",
-              nivel: 90,
-              descripcion: "Colaboración y comunicación constante.",
-            },
-            {
-              nombre: "Creatividad",
-              nivel: 85,
-              descripcion: "Buscamos soluciones únicas e innovadoras.",
-            },
-          ],
-        },
-      ]);
-    }, 800);
+    const fetchSkills = async () => {
+      const skillsCollection = collection(db, "Habilidades");
+      const snapshot = await getDocs(skillsCollection);
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+      // Agrupar por categoría para que coincida con la UI
+      const grouped = data.reduce((acc, skill) => {
+        const catIndex = acc.findIndex(c => c.categoria === skill.categoria);
+        if (catIndex !== -1) {
+          acc[catIndex].habilidades.push(skill);
+        } else {
+          acc.push({ categoria: skill.categoria, habilidades: [skill] });
+        }
+        return acc;
+      }, []);
+      setSkills(grouped);
+    };
+
+    fetchSkills();
   }, []);
 
   return (
     <div className="py-16 bg-pink-50">
       {/* Encabezado */}
-      <section className="bg-pink-300 text-white py-20 text-center">
+      <section className="bg-pink-500 text-white py-20 text-center">
         <h1 className="text-4xl font-bold mb-6">Habilidades de Kitty Code 💻</h1>
         <p className="text-xl max-w-2xl mx-auto">
           Aquí mostramos las competencias de nuestro equipo en desarrollo y diseño, 
@@ -73,18 +51,17 @@ const Skills = () => {
 
       {/* Cartillas */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 mt-12">
-        {skills.map((categoria) => (
+        {skills.map((categoria, idx) => (
           <div
-            key={categoria.id}
+            key={idx}
             className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all p-6 border border-pink-100 transform hover:-translate-y-2 hover:scale-105"
           >
-            {/* Título de categoría resaltado */}
             <h2 className="text-2xl font-semibold text-pink-600 mb-4 text-center bg-pink-100 rounded-xl py-2 px-4 inline-block">
               {categoria.categoria}
             </h2>
 
             {categoria.habilidades.map((hab) => (
-              <div key={hab.nombre} className="mb-5">
+              <div key={hab.id} className="mb-5">
                 <div className="flex items-center gap-2 mb-1">
                   {getIcono(hab.nombre)}
                   <h3 className="font-semibold text-gray-800">{hab.nombre}</h3>
@@ -113,7 +90,7 @@ const Skills = () => {
   );
 };
 
-// Iconos para habilidades
+// Iconos según el nombre de la habilidad
 const getIcono = (nombre) => {
   const iconProps = { size: 24, className: "text-pink-500" };
   const iconos = {
@@ -130,4 +107,3 @@ const getIcono = (nombre) => {
 };
 
 export default Skills;
-
