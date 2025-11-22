@@ -1,117 +1,51 @@
-# 🐾 Kitty Code – README Actualizado
+# 🐱✨ Kitty Code – Webs con estilo, corazón y tecnología
 
-**Kitty Code** es un proyecto creado por un equipo de chicas apasionadas por la tecnología y el diseño: **Besnaliz, Tatiana y Stefany**. Nos especializamos en **desarrollar soluciones web, aplicaciones modernas y diseños digitales** con creatividad y propósito.
+**En Kitty Code diseñamos y desarrollamos páginas web modernas, bonitas y profesionales** para empresas y emprendedoras que quieren destacar en el mundo digital.  
+Combinamos creatividad, diseño juvenil y buenas prácticas de programación para crear sitios web funcionales, responsivos y con identidad propia.
 
----
-
-## ✨ Descripción del Proyecto
-
-Kitty Code nace para ofrecer **proyectos tecnológicos con impacto real**, combinando:
-
-* 🎨 Creatividad en diseño
-* 🖥️ Usabilidad y accesibilidad
-* ⚡ Tecnología de punta
-* 🌐 Escalabilidad y personalización
-
-Nuestro enfoque es construir soluciones **personalizadas, accesibles y eficientes**, ideales para clientes que buscan innovación y excelencia.
+Además, invitamos a **chicas apasionadas por la tecnología** a unirse al equipo y trabajar en proyectos reales, aprendiendo juntas y creciendo profesionalmente. 💕
 
 ---
 
-## 💻 Tecnologías Utilizadas
+## 🌸 ¿Qué hacemos?
 
-### **Frontend**
-
-* React
-* TailwindCSS
-* HTML & CSS
-* JavaScript (ES6+)
-
-### **Backend**
-
-* Node.js
-* Express
-* PostgreSQL
-
-### **Diseño**
-
-* Figma
-* Adobe XD
-* Illustrator
-
-### **Herramientas**
-
-* GitHub
-* Vercel / Netlify
-* APIs REST
-* Vite
+✔ Creamos páginas web personalizadas para negocios y marcas  
+✔ Diseñamos interfaces modernas y con estilo  
+✔ Desarrollamos sitios responsivos para móvil y desktop  
+✔ Acompañamos a emprendedoras en su presencia digital  
+✔ Fomentamos el aprendizaje colaborativo entre chicas tech  
 
 ---
 
-## 🚀 Características Principales
+## 🚀 Tecnologías que usamos
 
-* Portafolio interactivo de proyectos realizados
-* Sección de habilidades con indicadores de dominio
-* Formulario de contacto con validación
-* Tarjetas del equipo con información real y redes sociales
-* Animaciones y efectos visuales modernos
-* Diseño responsivo y orientado a experiencia de usuario
-
----
-
-## 📁 Estructura del Proyecto (React)
-
-```
-src/
-│── components/
-│── pages/
-│── hooks/
-│── context/
-│── assets/
-│── styles/
-│── App.jsx
-│── main.jsx
-```
-
----
-
-## 🧪 Scripts Disponibles
-
-```bash
-npm run dev
-npm run build
-npm run preview
-```
-
----
-
-## 🌟 Impacto de Nuestros Proyectos
-
-| Métrica                     | Resultado |
-| --------------------------- | --------- |
-| 🏆 Proyectos Completados    | 12+       |
-| 👥 Usuarios Impactados      | 500+      |
-| 😊 Satisfacción del Cliente | 98%       |
-| 💻 Líneas de Código         | 15K+      |
+- **HTML5 / CSS3**
+- **TailwindCSS**
+- **JavaScript**
+- **React.js**
+- **Figma** (para diseño UI/UX)
+- **Git & GitHub**
 
 ---
 
 ## 👩‍💻 Nuestro Equipo
 
-* **Besnaliz Faria** – Frontend Developer – Interfaces dinámicas y responsivas
-* **Tatiana Gonzales** – Backend Developer – Sistemas seguros y escalables
-* **Stefany Vivanco** – UI/UX Designer – Experiencias digitales intuitivas
+Somos chicas desarrolladoras, diseñadoras y creadoras digitales que creen en un futuro con más mujeres en tecnología.
+
+- **Diseño UI/UX**  
+- **Desarrollo Front-end**  
+- **Gestión de Producto**  
+- **Desarrollo Back-end**  
+
+Cada una aporta su estilo, talento y creatividad ✨
 
 ---
 
-## 📬 Contacto
+## 💗 ¿Quieres unirte a Kitty Code?
 
-* ✉️ [hola@kittycode.dev](mailto:hola@kittycode.dev)
-* 💖 [proyectos@kittycode.dev](mailto:proyectos@kittycode.dev)
-* 🐾 [contacto@kittycode.dev](mailto:contacto@kittycode.dev)
+Si eres una chica que ama la tecnología y quiere aprender, crear y trabajar en proyectos reales:
 
-**Síguenos en redes sociales:** Instagram · TikTok · YouTube · GitHub · LinkedIn
+### 👉 ¡Eres bienvenida al equipo!  
+Pronto abriremos un formulario para nuevas integrantes. 🌷
 
----
-
-Si quieres agregar capturas, badges o incluir el link del despliegue, lo puedo integrar también.
 
