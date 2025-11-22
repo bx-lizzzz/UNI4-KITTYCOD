@@ -10,6 +10,9 @@ import {
   FaPaperPlane
 } from "react-icons/fa";
 
+import { db } from "../firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -28,7 +31,7 @@ const Contact = () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
       newErrors.email = "El correo no es válido 💌";
     if (!formData.projectType) newErrors.projectType = "Selecciona un proyecto 🌸";
-    if (!formData.message.trim()) newErrors.message = "Escribe un mensaje ✏️";
+    if (!formData.message.trim()) newErrors.message = "Escribe un mensaje ✏";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -39,15 +42,38 @@ const Contact = () => {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  const saveContact = async () => {
+    const contactosRef = collection(db, "Contactos");
+    await addDoc(contactosRef, {
+      name: formData.name,
+      email: formData.email,
+      projectType: formData.projectType,
+      message: formData.message,
+      createdAt: Timestamp.now(),
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
+
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 2000));
-    console.log("📨 Datos enviados:", formData);
+
+    try {
+      await saveContact();
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        projectType: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Error al enviar mensaje.");
+    }
+
     setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: "", email: "", projectType: "", message: "" });
   };
 
   if (isSubmitted) {
@@ -74,7 +100,6 @@ const Contact = () => {
 
   return (
     <div className="bg-pink-50 min-h-screen py-16">
-      {/* ENCABEZADO */}
       <section className="bg-pink-300 text-white py-20 text-center">
         <h1 className="text-4xl font-bold mb-6">💌 Contáctanos</h1>
         <p className="text-xl max-w-2xl mx-auto">
@@ -82,9 +107,7 @@ const Contact = () => {
         </p>
       </section>
 
-      {/* CONTENIDO */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 px-6 mt-12">
-        {/* INFO */}
         <div className="bg-white rounded-2xl shadow-md p-8 border border-pink-100 transform hover:-translate-y-2 hover:scale-105 transition-all">
           <h2 className="text-2xl font-semibold text-pink-600 mb-4 text-center bg-pink-100 rounded-xl py-2 px-4 inline-block">
             🌷 Información
@@ -113,13 +136,12 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* FORMULARIO */}
         <div className="lg:col-span-2 bg-white rounded-2xl shadow-md p-8 border border-pink-100 transform hover:-translate-y-2 hover:scale-105 transition-all">
           <h2 className="text-2xl font-semibold text-pink-600 mb-6 text-center bg-pink-100 rounded-xl py-2 px-4 inline-block">
             💬 Envíanos un mensaje
           </h2>
+
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Nombre */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Nombre *</label>
               <input
@@ -135,7 +157,6 @@ const Contact = () => {
               {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
             </div>
 
-            {/* Correo */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Correo *</label>
               <input
@@ -151,7 +172,6 @@ const Contact = () => {
               {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
             </div>
 
-            {/* Tipo de proyecto */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Tipo de proyecto *</label>
               <select
@@ -171,7 +191,6 @@ const Contact = () => {
               {errors.projectType && <p className="text-red-500 text-sm">{errors.projectType}</p>}
             </div>
 
-            {/* Mensaje */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Mensaje *</label>
               <textarea
@@ -187,7 +206,6 @@ const Contact = () => {
               {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
             </div>
 
-            {/* Botón */}
             <button
               type="submit"
               disabled={isSubmitting}
