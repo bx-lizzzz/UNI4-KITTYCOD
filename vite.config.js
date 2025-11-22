@@ -6,4 +6,3 @@ export default defineConfig({
   base: '/KITTY-CODE-UNI4/',  
   plugins: [react(), tailwindcss()],
 });
-
