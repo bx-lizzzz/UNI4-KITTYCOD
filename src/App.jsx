@@ -65,7 +65,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/Proyecto-Final-U4">
+    <Router basename="/UNI4-KITTYCOD">
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
