@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  base: '/KITTY-CODE-UNI4/',  
+  base: '/UNI4-KITTYCOD/',  
   plugins: [react(), tailwindcss()],
 });
