@@ -1,16 +1,17 @@
-import './index.css';
-import App from './App.jsx';
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 
-// ⭐ IMPORTA AuthProvider
-import { AuthProvider } from "./contexts/AuthContext";
+import App from './App.jsx'
+import './index.css'
+import { AuthProvider } from "./contexts/AuthContext"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <BrowserRouter basename="/UNI4-KITTYCOD">
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
   </StrictMode>
-);
+)
