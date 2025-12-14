@@ -1,6 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
-
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Team from "./pages/Team";
@@ -8,6 +7,7 @@ import Portfolio from "./pages/Portfolio";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 
+// ⭐ Agregar DashboardPage
 import DashboardPage from "./pages/DashboardPage";
 import DashboardCliente from "./components/DashboardCliente";
 import MemberDashboard from "./components/MemberDashboard";
@@ -66,20 +66,24 @@ function App() {
   }, []);
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/nosotras" element={<Team />} />
-        <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/portafolio" element={<Portfolio />} />
-        <Route path="/habilidades" element={<Skills />} />
-        <Route path="/contacto" element={<Contact />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/MemberDashboard" element={<MemberDashboard />} />
-        <Route path="/DashboardCliente" element={<DashboardCliente />} />
-      </Routes>
-    </Layout>
+    <Router basename="/UNI4-KITTYCOD">
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/nosotras" element={<Team />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portafolio" element={<Portfolio />} />
+          <Route path="/habilidades" element={<Skills />} />
+          <Route path="/contacto" element={<Contact />} />
+
+          {/* ⭐ Aquí agregamos tu Dashboard */}
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/MemberDashboard" element={<MemberDashboard />} />
+      <Route path="/DashboardCliente" element={<DashboardCliente />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
